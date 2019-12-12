@@ -1,0 +1,6 @@
+.box {
+    display: flex;
+    padding: 10px;
+    border: solid 3px grey;
+    border-radius: 10px;
+}
