@@ -1,7 +1,21 @@
 <h3>Equipment</h3>
 <ul>
-  <li>Habitat dome</li>
-  <li>Drones</li>
-  <li>Food containers</li>
-  <li>Oxygen tanks</li>
+  <li *ngFor="let equipment of cargo">
+    
+  <span *ngIf="cargoBeingEdited !== equipment; else cargoEditor">
+    <span (click)="edit(equipment)" class="editable-text">{{equipment}}</span>
+    <button (click)="remove(equipment)">Remove</button>
+  </span>
+
+  <ng-template #cargoEditor>
+    <input #editedCargo (keyup.enter)="duplicateMessage=save(editedCargo.value, equipment)" value="{{equipment}}"/>
+    <button (click)="duplicateMessage=save(editedCargo.value, equipment)">Save</button>
+    <p class = "error" *ngIf = "duplicateMessage">{{duplicateMessage}}</p>
+  </ng-template>
+    
+  </li>
 </ul>
+
+<input #newEquipment (keyup.enter)="message=add(newEquipment.value); newEquipment.value = ''" type="text"/>
+<button (click)="message=add(newEquipment.value); newEquipment.value = ''">Add</button>
+<p class = "error" *ngIf = "message">{{message}}</p>
