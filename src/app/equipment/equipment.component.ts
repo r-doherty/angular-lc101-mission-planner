@@ -31,14 +31,29 @@ export class EquipmentComponent implements OnInit {
    {
       this.cargoHold.push(equipment);
       this.cargoMass += equipment['mass'];
-      if(this.maximumAllowedMass - this.cargoMass < 200)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return this.maximumAllowedMass - this.cargoMass <= 200;
    }
+
+   removeItem(equipment: object)
+   {
+      let index = this.cargoHold.indexOf(equipment);
+      this.cargoMass -= equipment['mass'];
+      this.cargoHold.splice(index, 1);
+   }
+
+   inventoryCheck(item: object, items: object[]): boolean
+   {
+     let invCount = 0;
+     for(let i = 0; i < items.length; i++)
+     {
+        if(items[i] === item)
+        {
+          invCount++;
+        }
+     }
+     return invCount > 1;
+   }
+
+
    
 }

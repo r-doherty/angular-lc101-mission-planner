@@ -3,8 +3,17 @@ li:hover {
 }
 
 .displayBox {
-    height: 275px;
+    height: auto;
     width: auto;
+    padding: 10px;
+    border: 3px black dashed;
+}
+
+.selectedBox {
+    height: auto;
+    width: auto;
+    padding: 10px;
+    border: 3px darkgreen solid;
 }
 
 img {

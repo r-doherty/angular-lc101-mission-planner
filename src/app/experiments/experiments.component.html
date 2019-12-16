@@ -1,7 +1,18 @@
 <div class="displayBox">
     <h3>Possible Experiments</h3>
     <ul>
-      <li *ngFor="let experiment of experiments">{{experiment}}</li>
+      <li *ngFor="let experiment of experiments">
+        <button [class.active]="!selectedResearch.includes(experiment) && selectedResearch.length < maxProjects" (click)="addItem(experiment)" [disabled]="selectedResearch.includes(experiment) || selectedResearch.length >= maxProjects">Add</button> 
+        {{experiment}}
     </ul>
 </div>
 <hr>
+
+<div class = "selectedBox">
+  <h3>Research Agenda: {{selectedResearch.length}}/{{maxProjects}} Projects Selected</h3>
+  <ol>
+      <li *ngFor="let research of selectedResearch" (click)="removeItem(research)">{{research}}</li>
+  </ol>
+  <!-- Add the "Empty Research" button here. -->
+  <button (click)="selectedResearch = []">Cancel All Projects</button>
+</div>
